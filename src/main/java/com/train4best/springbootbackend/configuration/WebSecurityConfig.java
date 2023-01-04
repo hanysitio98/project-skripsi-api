@@ -1,21 +1,32 @@
 package com.train4best.springbootbackend.configuration;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-public class WebSecurityConfig {
+@RequiredArgsConstructor
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable(); /* < Setting CSRF disable karena sudah di handle oleh JWT */
-        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().permitAll().and().httpBasic();
+    @Override
+    protected void configure(final HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf()
+                .disable()
+                .authorizeRequests()
+                .mvcMatchers("/api/v1/authenticate")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .exceptionHandling()
+                .and()
+                .sessionManagement();
+
+        httpSecurity.cors();
 
     }
 }
