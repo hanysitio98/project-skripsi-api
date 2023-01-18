@@ -20,6 +20,10 @@ public class RegistrationService {
                 .orElseThrow(() -> new ResourceNotFoundException("Registration dengan id" + id + " tidak ditemukan"));
     }
 
+    public Registration findByInvNo(String invNo) {
+        return  registrationRepository.findByInvNo(invNo);
+    }
+
     public List<Registration> findAll() {
         return registrationRepository.findAll();
     }

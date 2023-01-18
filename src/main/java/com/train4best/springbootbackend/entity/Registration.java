@@ -1,6 +1,8 @@
 package com.train4best.springbootbackend.entity;
 
 import lombok.Data;
+import lombok.Generated;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +15,7 @@ public class Registration implements Serializable {
 
     @Id
     private String id;
+    private String invNo;
     private String training;
     private String traineeName;
     @Temporal(TemporalType.TIMESTAMP)

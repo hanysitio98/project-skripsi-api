@@ -8,18 +8,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable(); /* < Setting CSRF disable karena sudah di handle oleh JWT */
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .anyRequest().permitAll()
-                .and()
-                .httpBasic();
-    }
-}
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+//
+//    @Override
+//    public void configure(HttpSecurity http) throws Exception {
+//        http.cors().and().csrf().disable(); /* < Setting CSRF disable karena sudah di handle oleh JWT */
+//        http.authorizeRequests()
+//                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                .anyRequest().permitAll()
+//                .and()
+//                .httpBasic();
+//    }
+//}

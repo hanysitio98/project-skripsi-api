@@ -18,9 +18,7 @@ public class Project implements Serializable {
     private String taskTitle;
     private String taskDescription;
     private String client;
-    @JoinColumn
-    @ManyToOne
-    private Pengguna assignTo;
+    private String assignToName;
     private String priority;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dueDate;

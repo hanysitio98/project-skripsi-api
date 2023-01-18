@@ -12,7 +12,6 @@ public class Employee implements Serializable {
     @Id
     private String id;
     private String employeeName;
-    private String username;
-    private String password;
+    private String position;
 
 }
